@@ -36,6 +36,17 @@ namespace ClassLibrary
             return partitions * partitionSize; // Примерное значение свободной памяти
         }
 
+        public override double CalculateTimeToCopy(double dataSize) //Количество времени для копирования
+        {
+            double usbSpeedInGBps = usbSpeed * 0.125; // Скорость в GB в секунду
+            return dataSize / usbSpeedInGBps; // Время в секундах
+        }
+
+        public override int CalculateRequiredDevices(double dataSize) //Расчет необходимого количества носителей информации
+        {
+            return (int)Math.Ceiling(dataSize / partitionSize); // Округленное количество устройств
+        }
+
         public override void GetDeviceInfo()
         {
             Console.WriteLine($"Информация о HDD - Наименование: {name}, Модель: {model}, Скорость USB: {usbSpeed}, Количество разделов: {partitions}, Объем разделов: {partitionSize} ГБ");

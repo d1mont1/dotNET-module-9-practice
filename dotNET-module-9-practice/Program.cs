@@ -19,13 +19,21 @@ namespace dotNET_module_9_practice
         };
 
             double totalMemory = 0;
+
+            Console.WriteLine($"Итоговое количество памяти всех устройств : {totalMemory} ГБ");
+
+            double dataSizeToCopy = 565; // Размер данных для копирования в GB
+
             foreach (var device in devices)
             {
                 device.GetDeviceInfo();
-                totalMemory += device.GetMemory();
+                device.CopyData(dataSizeToCopy);
+                double timeToCopy = device.CalculateTimeToCopy(dataSizeToCopy);
+                Console.WriteLine($"Время для копирования: {timeToCopy} секунд");
+                int requiredDevices = device.CalculateRequiredDevices(dataSizeToCopy);
+                Console.WriteLine($"Необходимое количество носителей: {requiredDevices}");
+                Console.WriteLine();
             }
-
-            Console.WriteLine($"Итоговое количество памяти всех устройств : {totalMemory} ГБ");
         }
     }
 }

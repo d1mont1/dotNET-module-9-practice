@@ -10,6 +10,8 @@ namespace ClassLibrary
     {
         protected string name;
         protected string model;
+        public abstract double CalculateTimeToCopy(double dataSize);
+        public abstract int CalculateRequiredDevices(double dataSize);
 
         public abstract double GetMemory();
         public abstract void CopyData(double dataSize);
